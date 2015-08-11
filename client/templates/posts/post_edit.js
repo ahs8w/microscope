@@ -16,7 +16,7 @@ Template.postEdit.events({
     // important: use $set operator to replace a set of specified fields while leaving others untouched
     Posts.update(currentPostId, {$set: postProperties}, function(error) {
       if (error) {
-        throwError(error.reason)
+        Errors.throw(error.reason)
       } else {
         Router.go('postPage', {_id: currentPostId});
       }
@@ -29,7 +29,7 @@ Template.postEdit.events({
     if (confirm("Delete this post?")) {
       var currentPostId = this._id;
       Posts.remove(currentPostId);
-      Router.go('postsList');
+      Router.go('home');
     }
   }
 });
